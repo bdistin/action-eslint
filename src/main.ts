@@ -21,7 +21,7 @@ async function lint() {
 		for (const msg of messages) {
 			const { line, endLine, column, endColumn, severity, ruleId, message } = msg;
 			const annotationLevel = levels[severity];
-			annotations.push({
+			const annotation = {
 				path,
 				start_line: line,
 				end_line: endLine || line,
@@ -30,7 +30,9 @@ async function lint() {
 				annotation_level: annotationLevel,
 				title: ruleId || 'ESLint',
 				message
-			});
+			};
+			annotations.push(annotation);
+			console.log(annotation);
 		}
 	}
 
